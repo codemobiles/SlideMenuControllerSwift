@@ -1046,7 +1046,7 @@ extension UIViewController {
     }
     
     public func addBackBarButtonWithImage(_ buttonImage: UIImage) {
-        let leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backClick))
+        let leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.backClick))
         navigationItem.leftBarButtonItem = leftButton
     }
     
@@ -1058,6 +1058,10 @@ extension UIViewController {
     public func addRightBarButtonWithImage(_ buttonImage: UIImage) {
         let rightButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.toggleRight))
         navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc open func backClick() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc public func toggleLeft() {
