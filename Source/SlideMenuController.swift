@@ -1044,6 +1044,36 @@ extension UIViewController {
         }
         return nil
     }
+	
+    public func addTitleBarButton(_ isTabHome: Bool, isX: Bool) {
+        let logoImage:UIImage = UIImage(named: "JTG_top_logo")!
+        let logoImagePressed:UIImage = UIImage(named: "JTG_top_logo_pressed")!
+        let button = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        let buttonSize = CGSize(width: 90, height: 40)//CGSizeMake(90, 40)
+        let marginX = (self.navigationController!.navigationBar.frame.size.width / 2) - (buttonSize.width / 2)
+        if !isX {
+            if #available(iOS 11.0, *) {
+                let marginY:CGFloat = 27.0
+                button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
+            } else {
+                let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 2
+                button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
+            }
+        } else {
+            let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 9
+            button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
+        }
+        button.setImage(logoImage, for: .normal)
+        button.setImage(logoImagePressed, for: .highlighted)
+        button.removeTarget(nil, action: nil, for: .allEvents)
+        if isTabHome {
+            button.addTarget(self, action: #selector(SlideMenuController.titleClick), for: .touchUpInside)
+        } else {
+            button.addTarget(self, action: #selector(SlideMenuController.selectTabHomeClick), for: .touchUpInside)
+        }
+        button.addTarget(self, action: #selector(SlideMenuController.copyPress), for: .touchDownRepeat)
+        navigationController?.navigationBar.addSubview(button)
+    }
     
     public func addBackBarButtonWithImage(_ buttonImage: UIImage) {
         let leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.backClick))
@@ -1060,6 +1090,22 @@ extension UIViewController {
         navigationItem.rightBarButtonItem = rightButton
     }
     
+   @objc public func selectTabHomeClick() {
+        let tab = slideMenuController()?.mainViewController as! UITabBarController
+        tab.selectedIndex = 0
+    }
+    
+    @objc open func titleClick() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc open func copyPress() {
+        let defaults = UserDefaults.standard
+        if let token = defaults.string(forKey: "KEY_TOKEN") {
+            UIPasteboard.general.string = token
+        }
+    }
+	
     @objc open func backClick() {
         navigationController?.popViewController(animated: true)
     }
