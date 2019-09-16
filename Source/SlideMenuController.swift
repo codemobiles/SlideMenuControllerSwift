@@ -1053,7 +1053,7 @@ extension UIViewController {
         let marginX = (self.navigationController!.navigationBar.frame.size.width / 2) - (buttonSize.width / 2)
         if !isX {
             if #available(iOS 11.0, *) {
-                let marginY:CGFloat = 27.0
+                let marginY:CGFloat = 7.0
                 button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
             } else {
                 let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 2
