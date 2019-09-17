@@ -1049,18 +1049,18 @@ extension UIViewController {
         let logoImage:UIImage = UIImage(named: "JTG_top_logo")!
         let logoImagePressed:UIImage = UIImage(named: "JTG_top_logo_pressed")!
         let button = UIButton(type: UIButton.ButtonType.custom) as UIButton
-        let buttonSize = CGSize(width: 90, height: 40)//CGSizeMake(90, 40)
+        let buttonSize = CGSize(width: 90, height: 46)
         let marginX = (self.navigationController!.navigationBar.frame.size.width / 2) - (buttonSize.width / 2)
         if !isX {
             if #available(iOS 11.0, *) {
-                let marginY:CGFloat = 7
+                let marginY:CGFloat = 5
                 button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
             } else {
-                let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 2
+                let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2)
                 button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
             }
         } else {
-            let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 9
+            let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 5
             button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
         }
         button.setImage(logoImage, for: .normal)
