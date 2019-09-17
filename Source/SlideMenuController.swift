@@ -1060,7 +1060,7 @@ extension UIViewController {
                 button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
             }
         } else {
-            let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 5
+            let marginY = (self.navigationController!.navigationBar.frame.size.height / 2) - (buttonSize.height / 2) - 7
             button.frame = CGRect(x: marginX, y: marginY, width: buttonSize.width, height: buttonSize.height)
         }
         button.setImage(logoImage, for: .normal)
